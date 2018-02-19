@@ -1,24 +1,29 @@
 package application;
 
-import javafx.application.Application;
+import java.io.IOException;
 
+import javafx.application.Application
+;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 
 public class Main extends Application {
 	private Stage stage;
 	private Scene scene;
-	private FlowPane pane;
+	private AnchorPane pane;
 	private Label label;
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage){
 		this.stage = stage;
-		pane = new FlowPane();
-		label = new Label("Hello World!");
-		pane.getChildren().add(label);
+		try {
+		pane = (AnchorPane) FXMLLoader.load(Main.class.getResource("helloWorld.fxml"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 		scene = new Scene(pane, 640, 480);
 		stage.setScene(scene);
 		stage.show();
